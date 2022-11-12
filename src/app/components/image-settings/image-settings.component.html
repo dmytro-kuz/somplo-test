@@ -37,6 +37,7 @@
         <mat-form-field class="drop-down" appearance="outline">
           <mat-label>Animation types</mat-label>
           <mat-select
+            (valueChange)="addAnimation($event)"
             formControlName="animationType"
             name="animation"
             disableOptionCentering
@@ -49,14 +50,19 @@
       </form>
     </div>
   </mat-tab>
+  <mat-tab label="Position & size">Content 3</mat-tab>
   <mat-tab label="Download HTML file">
     <div class="upload-html">
-      <button class="upload-button html" mat-raised-button color="primary">
+      <button
+        (click)="downloadHTML()"
+        class="upload-button html"
+        mat-raised-button
+        color="primary"
+      >
         Download HTML file
       </button>
     </div>
   </mat-tab>
-  <mat-tab label="Position & size">Content 3</mat-tab>
 </mat-tab-group>
 
 <div #preview>
