@@ -1,3 +1,7 @@
+export const none = `  
+@keyframes none {
+  }`;
+
 export const slideInFromTop = `  
 @keyframes slideInFromTop {
     0% {

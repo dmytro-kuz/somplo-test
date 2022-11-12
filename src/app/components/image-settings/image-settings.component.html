@@ -1,12 +1,12 @@
 <mat-tab-group animationDuration="0ms">
-  <mat-tab label="Upload image">
-    <div class="uploadImage">
-      <form
-        *ngIf="form"
-        [formGroup]="form"
-        class="upload-file"
-        (ngSubmit)="onSubmit()"
-      >
+  <form
+    *ngIf="form"
+    [formGroup]="form"
+    class="upload-file"
+    (ngSubmit)="onSubmit()"
+  >
+    <mat-tab label="Upload image">
+      <div class="uploadImage">
         <div class="image-input">
           <button
             (click)="uploadFile.click()"
@@ -34,7 +34,11 @@
           </div>
         </div>
 
-        <mat-form-field class="drop-down" appearance="outline">
+        <mat-form-field
+          *ngIf="imgName; else textPlaceholder"
+          class="drop-down"
+          appearance="outline"
+        >
           <mat-label>Animation types</mat-label>
           <mat-select
             (valueChange)="addAnimation($event)"
@@ -47,22 +51,59 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-      </form>
-    </div>
-  </mat-tab>
-  <mat-tab label="Position & size">Content 3</mat-tab>
-  <mat-tab label="Download HTML file">
-    <div class="upload-html">
-      <button
-        (click)="downloadHTML()"
-        class="upload-button html"
-        mat-raised-button
-        color="primary"
-      >
-        Download HTML file
-      </button>
-    </div>
-  </mat-tab>
+        <ng-template #textPlaceholder>
+          <p>* Please select the image first to access all functionality</p>
+        </ng-template>
+      </div>
+    </mat-tab>
+    <mat-tab
+      class="position-size"
+      disabled="{{ imgName ? false : true }}"
+      label="Position & size"
+      #tooltip="matTooltip"
+      matTooltip="Please select the image first to access this field"
+      matTooltipPosition="below"
+      matTooltipHideDelay="10000"
+    >
+      <div class="image-width">
+        <label class="example-value-label">Image width</label>
+        <mat-slider
+          (valueChange)="setImageWidth()"
+          type="range"
+          formControlName="imageWidth"
+          max="100"
+          min="0"
+          step="1"
+        ></mat-slider>
+        {{ form.value.imageWidth }}
+      </div>
+
+      <div class="image-heigth">
+        <label class="example-value-label">Image height</label>
+        <mat-slider
+          (valueChange)="setImageHeight()"
+          type="range"
+          formControlName="imageHeight"
+          max="100"
+          min="0"
+          step="1"
+        ></mat-slider>
+        {{ form.value.imageHeight }}
+      </div>
+    </mat-tab>
+    <mat-tab label="Download HTML file">
+      <div class="upload-html">
+        <button
+          (click)="downloadHTML()"
+          class="upload-button html"
+          mat-raised-button
+          color="primary"
+        >
+          Download HTML file
+        </button>
+      </div>
+    </mat-tab>
+  </form>
 </mat-tab-group>
 
 <div #preview>

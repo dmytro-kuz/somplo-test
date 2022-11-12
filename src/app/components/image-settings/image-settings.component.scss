@@ -42,7 +42,8 @@
 }
 
 .preview-container {
-  overflow: hidden;
+  // overflow: hidden;
+  object-fit: contain;
   width: 500px;
   height: 400px;
   margin: auto;
@@ -50,6 +51,15 @@
   img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    // object-fit: contain;
   }
+}
+
+label {
+  margin-right: 1rem;
+}
+
+
+.mat-slider {
+  min-width: 70%;
 }

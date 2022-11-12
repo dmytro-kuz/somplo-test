@@ -6,6 +6,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   imports: [
@@ -16,6 +19,9 @@ import { MatSelectModule } from '@angular/material/select';
     FormsModule,
     MatButtonModule,
     MatSelectModule,
+    MatTooltipModule,
+    MatSliderModule,
+    MatInputModule,
   ],
   declarations: [ImageSettingsComponent],
   exports: [ImageSettingsComponent],

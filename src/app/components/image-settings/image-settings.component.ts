@@ -26,6 +26,7 @@ export class ImageSettingsComponent implements OnInit, AfterViewInit {
   imgUrl?: string | ArrayBuffer;
   imgName?: string;
   animationTypes: any[] = [
+    'none',
     'slide in from top',
     'zoom in from bottom',
     'left to right',
@@ -42,7 +43,8 @@ export class ImageSettingsComponent implements OnInit, AfterViewInit {
     this.form = this.formBuilder.group({
       imageFile: [, Validators.required],
       animationType: [],
-      imageSize: [],
+      imageWidth: [100],
+      imageHeight: [100],
       containerWidth: [],
       containerHeight: [],
       horizontalPosition: [],
@@ -72,6 +74,10 @@ export class ImageSettingsComponent implements OnInit, AfterViewInit {
   addAnimation(event: Event) {
     let animationStyle = '';
     let animationName = '';
+    if (event.toString() === 'none') {
+      animationStyle = animation.none;
+      animationName = 'none';
+    }
     if (event.toString() === 'slide in from top') {
       animationStyle = animation.slideInFromTop;
       animationName = 'slideInFromTop';
@@ -101,8 +107,7 @@ export class ImageSettingsComponent implements OnInit, AfterViewInit {
 
   downloadHTML() {
     const template = this.preview?.nativeElement;
-    // const styles =
-    const data = this.componentsService.generateTemplate(template, '');
+    const data = this.componentsService.generateTemplate(template);
     const blob = new Blob([data], { type: 'text/html' });
     const url = window.URL.createObjectURL(blob);
     window.open(url);
@@ -115,6 +120,24 @@ export class ImageSettingsComponent implements OnInit, AfterViewInit {
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
     }, 0);
+  }
+
+  setImageWidth() {
+    console.log(this.form?.value);
+    const img = document.querySelector('img');
+    if (img) {
+      img.style.objectFit = 'none';
+      img.style.width = `${this.form?.value.imageWidth}%`;
+    }
+  }
+
+  setImageHeight() {
+    console.log(this.form?.value);
+    const img = document.querySelector('img');
+    if (img) {
+      img.style.objectFit = 'none';
+      img.style.height = `${this.form?.value.imageHeight}%`;
+    }
   }
 
   onSubmit() {}
