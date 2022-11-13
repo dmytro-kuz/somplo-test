@@ -60,12 +60,8 @@
       class="position-size"
       disabled="{{ imgName ? false : true }}"
       label="Position & size"
-      #tooltip="matTooltip"
-      matTooltip="Please select the image first to access this field"
-      matTooltipPosition="below"
-      matTooltipHideDelay="10000"
     >
-      <div class="image-width">
+      <div class="image-width slider">
         <label class="example-value-label">Image width</label>
         <mat-slider
           (valueChange)="setImageWidth()"
@@ -78,7 +74,7 @@
         {{ form.value.imageWidth }}
       </div>
 
-      <div class="image-heigth">
+      <div class="image-heigth slider">
         <label class="example-value-label">Image height</label>
         <mat-slider
           (valueChange)="setImageHeight()"
@@ -89,6 +85,32 @@
           step="1"
         ></mat-slider>
         {{ form.value.imageHeight }}
+      </div>
+
+      <div class="image-container-width slider">
+        <label class="example-value-label">Image container width</label>
+        <mat-slider
+          (valueChange)="setContainerWidth()"
+          type="range"
+          formControlName="containerWidth"
+          max="100"
+          min="0"
+          step="1"
+        ></mat-slider>
+        {{ form.value.containerWidth }}
+      </div>
+
+      <div class="image-container-height slider">
+        <label class="example-value-label">Image container height</label>
+        <mat-slider
+          (valueChange)="setContainerHeight()"
+          type="range"
+          formControlName="containerHeight"
+          max="100"
+          min="0"
+          step="1"
+        ></mat-slider>
+        {{ form.value.containerHeight }}
       </div>
     </mat-tab>
     <mat-tab label="Download HTML file">

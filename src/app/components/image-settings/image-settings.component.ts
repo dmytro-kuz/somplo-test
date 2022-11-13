@@ -45,8 +45,8 @@ export class ImageSettingsComponent implements OnInit, AfterViewInit {
       animationType: [],
       imageWidth: [100],
       imageHeight: [100],
-      containerWidth: [],
-      containerHeight: [],
+      containerWidth: [100],
+      containerHeight: [100],
       horizontalPosition: [],
       verticalPosition: [],
     });
@@ -123,22 +123,45 @@ export class ImageSettingsComponent implements OnInit, AfterViewInit {
   }
 
   setImageWidth() {
-    console.log(this.form?.value);
     const img = document.querySelector('img');
-    if (img) {
-      img.style.objectFit = 'none';
+    const container = document.querySelector<HTMLElement>('.preview-container');
+    if (img && container) {
+      container.style.objectFit = 'none';
+      img.style.objectFit = 'fill';
       img.style.width = `${this.form?.value.imageWidth}%`;
     }
   }
 
   setImageHeight() {
-    console.log(this.form?.value);
     const img = document.querySelector('img');
-    if (img) {
-      img.style.objectFit = 'none';
+    const container = document.querySelector<HTMLElement>('.preview-container');
+    if (img && container) {
+      img.style.objectFit = 'cover';
+      img.style.objectFit = 'fill';
       img.style.height = `${this.form?.value.imageHeight}%`;
     }
   }
 
+  setContainerHeight() {
+    const container = document.querySelector<HTMLElement>('.preview-container');
+    const img = document.querySelector('img');
+    if (container && img) {
+      img.style.objectFit = 'cover';
+      container.style.height = `${
+        (400 * this.form?.value.containerHeight) / 100
+      }px`;
+    }
+  }
+
+  setContainerWidth() {
+    const container = document.querySelector<HTMLElement>('.preview-container');
+    const img = document.querySelector('img');
+    if (container && img) {
+      img.style.objectFit = 'cover';
+      container.style.width = `${
+        (500 * this.form?.value.containerWidth) / 100
+      }px`;
+    }
+  }
   onSubmit() {}
 }
