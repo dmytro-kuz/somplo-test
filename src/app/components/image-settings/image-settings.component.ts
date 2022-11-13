@@ -47,8 +47,8 @@ export class ImageSettingsComponent implements OnInit, AfterViewInit {
       imageHeight: [100],
       containerWidth: [100],
       containerHeight: [100],
-      horizontalPosition: [],
-      verticalPosition: [],
+      horizontalPosition: [0],
+      verticalPosition: [0],
     });
   }
 
@@ -163,5 +163,23 @@ export class ImageSettingsComponent implements OnInit, AfterViewInit {
       }px`;
     }
   }
-  onSubmit() {}
+
+  setPositionX() {
+    const img = document.querySelector('img');
+    if (img) {
+      console.log('ok');
+
+      img.style.transform = `translateX(${
+        this.form?.value.horizontalPosition * 4
+      }px`;
+    }
+  }
+  setPositionY() {
+    const img = document.querySelector('img');
+    if (img) {
+      img.style.transform = `translateY(${
+        this.form?.value.verticalPosition * 4
+      }px`;
+    }
+  }
 }
