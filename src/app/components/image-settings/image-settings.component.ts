@@ -101,8 +101,6 @@ export class ImageSettingsComponent implements OnInit, AfterViewInit {
       style.textContent = animationStyle;
       document.head.appendChild(style);
     }
-    console.log(animationStyle);
-    console.log(animationName);
   }
 
   downloadHTML() {
@@ -167,8 +165,6 @@ export class ImageSettingsComponent implements OnInit, AfterViewInit {
   setPositionX() {
     const img = document.querySelector('img');
     if (img) {
-      console.log('ok');
-
       img.style.transform = `translateX(${
         this.form?.value.horizontalPosition * 4
       }px`;
