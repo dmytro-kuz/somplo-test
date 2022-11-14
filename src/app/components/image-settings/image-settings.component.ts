@@ -21,6 +21,7 @@ export class ImageSettingsComponent implements OnInit, AfterViewInit {
   ) {}
 
   @ViewChild('preview') preview?: ElementRef<any>;
+  @ViewChild('uploadFile') fileInput: any;
 
   form?: FormGroup;
   imgUrl?: string | ArrayBuffer;
@@ -69,6 +70,7 @@ export class ImageSettingsComponent implements OnInit, AfterViewInit {
   clearImgList() {
     this.imgName = '';
     this.imgUrl = '';
+    this.fileInput.nativeElement.value = '';
   }
 
   addAnimation(event: Event) {
